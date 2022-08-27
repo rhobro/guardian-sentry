@@ -12,9 +12,9 @@ import 'package:flutter_rust_bridge/flutter_rust_bridge.dart';
 import 'dart:ffi' as ffi;
 
 abstract class Native {
-  Future<int> adder({required int a, required int b, dynamic hint});
+  Future<int> checksum({required int a, required int b, dynamic hint});
 
-  FlutterRustBridgeTaskConstMeta get kAdderConstMeta;
+  FlutterRustBridgeTaskConstMeta get kChecksumConstMeta;
 }
 
 class NativeImpl extends FlutterRustBridgeBase<NativeWire> implements Native {
@@ -23,19 +23,19 @@ class NativeImpl extends FlutterRustBridgeBase<NativeWire> implements Native {
 
   NativeImpl.raw(NativeWire inner) : super(inner);
 
-  Future<int> adder({required int a, required int b, dynamic hint}) =>
+  Future<int> checksum({required int a, required int b, dynamic hint}) =>
       executeNormal(FlutterRustBridgeTask(
         callFfi: (port_) =>
-            inner.wire_adder(port_, _api2wire_u32(a), _api2wire_u32(b)),
+            inner.wire_checksum(port_, _api2wire_u32(a), _api2wire_u32(b)),
         parseSuccessData: _wire2api_u32,
-        constMeta: kAdderConstMeta,
+        constMeta: kChecksumConstMeta,
         argValues: [a, b],
         hint: hint,
       ));
 
-  FlutterRustBridgeTaskConstMeta get kAdderConstMeta =>
+  FlutterRustBridgeTaskConstMeta get kChecksumConstMeta =>
       const FlutterRustBridgeTaskConstMeta(
-        debugName: "adder",
+        debugName: "checksum",
         argNames: ["a", "b"],
       );
 
@@ -75,23 +75,24 @@ class NativeWire implements FlutterRustBridgeWireBase {
           lookup)
       : _lookup = lookup;
 
-  void wire_adder(
+  void wire_checksum(
     int port_,
     int a,
     int b,
   ) {
-    return _wire_adder(
+    return _wire_checksum(
       port_,
       a,
       b,
     );
   }
 
-  late final _wire_adderPtr = _lookup<
+  late final _wire_checksumPtr = _lookup<
       ffi.NativeFunction<
-          ffi.Void Function(ffi.Int64, ffi.Uint32, ffi.Uint32)>>('wire_adder');
-  late final _wire_adder =
-      _wire_adderPtr.asFunction<void Function(int, int, int)>();
+          ffi.Void Function(
+              ffi.Int64, ffi.Uint32, ffi.Uint32)>>('wire_checksum');
+  late final _wire_checksum =
+      _wire_checksumPtr.asFunction<void Function(int, int, int)>();
 
   void free_WireSyncReturnStruct(
     WireSyncReturnStruct val,

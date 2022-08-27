@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.sentry">
+    package="io.rho.guardian.sentry">
    <application
         android:label="sentry"
         android:name="${applicationName}"

@@ -8,7 +8,7 @@
 PRODUCT_NAME = sentry
 
 // The application's bundle identifier
-PRODUCT_BUNDLE_IDENTIFIER = com.example.sentry
+PRODUCT_BUNDLE_IDENTIFIER = io.rho.guardian.sentry
 
 // The copyright displayed in application information
 PRODUCT_COPYRIGHT = Copyright © 2022 com.example. All rights reserved.

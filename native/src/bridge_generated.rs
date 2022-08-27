@@ -18,17 +18,17 @@ use flutter_rust_bridge::*;
 // Section: wire functions
 
 #[no_mangle]
-pub extern "C" fn wire_adder(port_: i64, a: u32, b: u32) {
+pub extern "C" fn wire_checksum(port_: i64, a: u32, b: u32) {
     FLUTTER_RUST_BRIDGE_HANDLER.wrap(
         WrapInfo {
-            debug_name: "adder",
+            debug_name: "checksum",
             port: Some(port_),
             mode: FfiCallMode::Normal,
         },
         move || {
             let api_a = a.wire2api();
             let api_b = b.wire2api();
-            move |task_callback| adder(api_a, api_b)
+            move |task_callback| Ok(checksum(api_a, api_b))
         },
     )
 }

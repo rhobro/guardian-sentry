@@ -1,4 +1,4 @@
-package com.example.sentry
+package io.rho.guardian.sentry
 
 import io.flutter.embedding.android.FlutterActivity
 
